@@ -4,6 +4,7 @@ package com.javaproject.guesstheword.guesstheword.contollers;
 import com.javaproject.guesstheword.guesstheword.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,9 +16,10 @@ public class GameController {
 
 
     @GetMapping("/game-home")
-    public String showGameHomePage(){
-        
+    public String showGameHomePage(Model model){
+
         String randomWord = gameService.toString();
+        model.addAttribute( "wordToDisplay", randomWord);
         return "game-home-page";
     }
 
