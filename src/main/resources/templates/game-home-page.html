@@ -3,17 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>GuessTheWord</title>
+
+    <script th:inline="javascript">
+
+        window.onload = function checkIfGameOver(){
+
+            var numberOfTriesRemaining = [[${triesLeft}]];
+
+            if (numberOfTriesRemaining===0) {
+                alert("Game Over :(")
+                document.getElementById('guessedChar').disabled = true;
+                document.getElementById('try').disabled = true;
+            }
+        }
+
+    </script>
 </head>
 <body>
 <h1 align="center">Guess the word!</h1>
 <h2 align="center" th:text= "${wordToDisplay}">show a random words here</h2>
+<h2 align="right" th:text="'Tries Remaining : ' + ${triesLeft}">Show number of tries:</h2>
 <hr/>
 
 <div align = "center">
     <form action="game-home" method = "GET">
         <label>Guess a Character : </label>
-        <input type="text" name="guessedChar"/>
-        <input type="submit" value="try"/>
+        <input type="text" name="guessedChar" id="guessedChar"/>
+        <input type="submit" value="try" id="try"/>
     </form>
 </div>
 
