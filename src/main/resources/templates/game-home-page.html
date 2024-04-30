@@ -8,5 +8,14 @@
 <h1 align="center">Guess the word!</h1>
 <h2 align="center" th:text= "${wordToDisplay}">show a random words here</h2>
 <hr/>
+
+<div align = "center">
+    <form action="game-home" method = "GET">
+        <label>Guess a Character : </label>
+        <input type="text" name="guessedChar"/>
+        <input type="submit" value="try"/>
+    </form>
+</div>
+
 </body>
 </html>
