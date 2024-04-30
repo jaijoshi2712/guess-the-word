@@ -20,7 +20,15 @@ public class GameController {
     public String showGameHomePage(@RequestParam(value = "guessedChar", required = false) String guessedChar,  Model model){
 
         String randomWord = gameService.toString();
+
+
+        if (guessedChar != null){
+            gameService.addGuess(guessedChar.charAt(0));
+            randomWord = gameService.toString();
+        }
+
         model.addAttribute( "wordToDisplay", randomWord);
+
         return "game-home-page";
     }
 
