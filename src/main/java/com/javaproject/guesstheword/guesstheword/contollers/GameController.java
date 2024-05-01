@@ -1,6 +1,4 @@
 package com.javaproject.guesstheword.guesstheword.contollers;
-
-
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.javaproject.guesstheword.guesstheword.service.GameService;
 import com.javaproject.guesstheword.guesstheword.utils.GameUtils;
@@ -41,6 +39,16 @@ public class GameController {
         model.addAttribute("triesLeft", gameUtils.getTriesRemaining());
 
         return "game-home-page";
+    }
+
+    @GetMapping("/reload")
+    public String reloadGame(){
+
+        gameService = gameUtils.reload();
+
+        gameUtils.resetTries();
+
+        return "redirect:/game-home";
     }
 
 

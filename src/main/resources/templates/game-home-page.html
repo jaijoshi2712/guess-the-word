@@ -17,6 +17,10 @@
             }
         }
 
+        function reloadGame(){
+            window.location.href = "http://localhost:8080/reload"
+        }
+
     </script>
 </head>
 <body>
@@ -24,7 +28,7 @@
 <h2 align="center" th:text= "${wordToDisplay}">show a random words here</h2>
 <h2 align="right" th:text="'Tries Remaining : ' + ${triesLeft}">Show number of tries:</h2>
 <hr/>
-
+<input type="button" value="reload" id="reload" style="float:right;" onclick="reloadGame()">
 <div align = "center">
     <form action="game-home" method = "GET">
         <label>Guess a Character : </label>
