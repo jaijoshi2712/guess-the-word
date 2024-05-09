@@ -1,41 +1,112 @@
-<!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>GuessTheWord</title>
+<!DOCTYPE html> 
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"> 
+  
+<head> 
+    <title>Word Guessing Game</title> 
+    <style>
+        
+body{
+    background-color:whitesmoke;
+}
 
-    <script th:inline="javascript">
+#gameName{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px; 
+    font-family: fantasy;
+    font-size: 3.5em;
+}
 
-        window.onload = function checkIfGameOver(){
+#heading { 
+	/* background-color: rgb(231, 231, 231);  */
+    background-color: black;
+	color: white; 
+	font-size: xx-large; 
+	padding: 2%; 
+	
+} 
 
-            var numberOfTriesRemaining = [[${triesLeft}]];
 
-            if (numberOfTriesRemaining===0) {
-                alert("Game Over :(")
-                document.getElementById('guessedChar').disabled = true;
-                document.getElementById('try').disabled = true;
-            }
+.card { 
+    background-color: white;
+	min-width: 40%; 
+	width: 50vh; 
+	min-height: 30vh; 
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+	transition: 0.3s; 
+	border-radius: 5px; 
+	/* margin-top: 20px;  */
+    margin: 20px auto;
+	padding: 2%; 
+} 
+
+body { 
+	/* display: flex;  */
+	text-align: center; 
+	font-family: "Gill Sans", 
+				"Gill Sans MT", 
+				Calibri, "Trebuchet MS", 
+				sans-serif; 
+} 
+
+input { 
+	/* width: 30px;  */
+	padding: 1%; 
+	font-size: larger; 
+	text-align: center; 
+	margin-left: 2%; 
+} 
+#guessedChar{
+    width: 30px;
+}
+
+#displayWord { 
+	font-size: xx-large; 
+}
+
+    </style>
+
+<script th:inline="javascript">
+
+    window.onload = function checkIfGameOver(){
+
+        var numberOfTriesRemaining = [[${triesLeft}]];
+
+        if (numberOfTriesRemaining===0) {
+            alert("Game Over :(")
+            document.getElementById('guessedChar').disabled = true;
+            document.getElementById('try').disabled = true;
         }
+    }
 
-        function reloadGame(){
-            window.location.href = "http://localhost:8080/reload"
-        }
+    function reloadGame(){
+        window.location.href = "http://localhost:8080/reload"
+    }
 
-    </script>
-</head>
-<body>
-<h1 align="center">Guess the word!</h1>
-<h2 align="center" th:text= "${wordToDisplay}">show a random words here</h2>
-<h2 align="right" th:text="'Tries Remaining : ' + ${triesLeft}">Show number of tries:</h2>
+</script>
+</head> 
+  
+<body> 
+    <p><h1 id="gameName" >Wordle!</h1> </p>
+    
+    <div class="card"> 
+        <h1 id="heading">Guess the word</h1> 
+        <p> 
+              <h2 class="word-to-guess" th:text= "${wordToDisplay}">show a random words here</h2>
+          </p> 
+
+        <h2 class="tries-remaining" th:text="'Tries Remaining : ' + ${triesLeft}">Show number of tries:</h2>
 <hr/>
-<input type="button" value="reload" id="reload" style="float:right;" onclick="reloadGame()">
+<input type="button" value="Restart!" id="reload" style="float:right; color: darkred;" onclick="reloadGame()">
 <div align = "center">
     <form action="game-home" method = "GET">
         <label>Guess a Character : </label>
-        <input type="text" name="guessedChar" id="guessedChar"/>
-        <input type="submit" value="try" id="try"/>
+        <input type="text" maxlength="1" name="guessedChar" id="guessedChar"/>
+        <input type="submit" value="Try" id="try"/>
     </form>
 </div>
-
-</body>
+    </div> 
+</body> 
+  
 </html>
