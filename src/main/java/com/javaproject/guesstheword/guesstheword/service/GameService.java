@@ -26,13 +26,11 @@ public class GameService {
     public GameService() throws SQLException {
 
 
-        try {
+
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/word_game_db", "admin", "admin");
             stmt = conn.prepareStatement("INSERT INTO words (word) VALUES (?)");
             storeRandomWord();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
 
 
 //        HttpRequest request = HttpRequest.newBuilder()
@@ -86,12 +84,15 @@ public class GameService {
             String randomWord = response.body();
             stmt.setString(1, randomWord);
             stmt.executeUpdate();
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException | SQLException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
