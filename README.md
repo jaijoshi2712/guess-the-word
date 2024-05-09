@@ -44,7 +44,4 @@ The `game-home-page.html` file is the Thymeleaf template that renders the game p
 
 The application uses a MySQL database named `word_game_db` to store random words for the game. When the application starts, the `GameService` class fetches a random 5-letter word from the `https://random-word-api.herokuapp.com/word?length=5` API and inserts it into the `words` table of the `word_game_db` database.
 
-Before running the application, make sure you have a MySQL server running locally, and the `word_game_db` database is created. The application uses the `admin` user with the password `admin` to connect to the database. You can modify these credentials in the `GameService` class constructor if needed.
-
-```java
-conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/word_game_db", "admin", "admin");
+Before running the application, make sure you have a MySQL server running locally, and the `word_game_db` database is created. 
